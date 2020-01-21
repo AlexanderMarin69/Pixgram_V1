@@ -9,6 +9,5 @@ namespace Pixgram_V1.ViewModels
     public class ImageUploadViewModel
     {
         public Image Image { get; set; }
-
     }
 }

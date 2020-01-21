@@ -33,9 +33,15 @@
             </div>
         </div>
 
-
-        <b> <label asp-for="Image.Name">Modell</label></b></b>
-        <input class="form-control" asp-for="Image.Name" />
+        <div class="col-lg-3">
+            <b> <label asp-for="Image.FileName">Namne uppladdning</label></b>
+            <input class="form-control" asp-for="Image.FileName" />
+        </div>
+        @*<div class="col-lg-3">
+            <b> <label asp-for="Image.FileCategory">Modell</label></b>
+            <input class="form-control" asp-for="Image.FileCategory" />
+        </div>*@
+        
     </form>
 
 

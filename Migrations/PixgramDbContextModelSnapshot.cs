@@ -25,8 +25,6 @@ namespace Pixgram_V1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AssociatedImageGuid");
-
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -59,17 +57,13 @@ namespace Pixgram_V1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId");
-
                     b.Property<DateTime>("DateAdded");
 
-                    b.Property<int>("FileUploadId");
+                    b.Property<string>("FileCategory");
 
-                    b.Property<string>("ImageGuid");
+                    b.Property<string>("FileName");
 
                     b.Property<string>("ImageUrl");
-
-                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 

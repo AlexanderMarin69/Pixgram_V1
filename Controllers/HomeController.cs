@@ -22,13 +22,10 @@ namespace Pixgram_V1.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var AllImages = await ctx.FileUploads.ToListAsync();
+            _ = new List<Image>();
+            List<Image> AllImages = await ctx.Images.ToListAsync();
 
-            var hello = new FileUploadsViewModel();
-
-            hello.FileUpload = AllImages.ToList();
-
-            return View(hello);
+            return View(AllImages);
         }
 
         public IActionResult Upload()

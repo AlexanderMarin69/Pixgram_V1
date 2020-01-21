@@ -1,4 +1,4 @@
-﻿@model Pixgram_V1.ViewModels.FileUploadsViewModel
+﻿@model Pixgram_V1.ViewModels.DisplayImagesViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -13,7 +13,7 @@
             </center>
             <div class="row no-gutters">
 
-                @if (Model.FileUpload.Count == 0)
+                @if (Model.Image.Count == 0)
                 {
 
                     <h3>
@@ -34,14 +34,13 @@
                 {
                     <h3 class="mb-5">These are the latest contributions.</h3>
                     
-                    @foreach (var v in Model.FileUpload)
+                    @foreach (var v in Model.Image)
                     {
                         <div class="col-md-4 ftco-animate">
-                            <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(@v.FilePath">
+                            <a href="@v.ImageUrl" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(@v.ImageUrl">
                                 <div class="overlay"></div>
                                 <div class="text text-center">
-                                    <h3>Work 01</h3>
-                                    <span class="tag">Model</span>
+                                    <h3>@v.FileName</h3>
                                 </div>
                             </a>
                         </div>

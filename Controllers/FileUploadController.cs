@@ -39,8 +39,7 @@ namespace Pixgram_V1.Controllers
                 // to Images folder
                 string imageFolderPath = rootPath + imageFolder;
                 // to Registration folder
-                var NewImageGuid = new Guid();
-                string targetFolder = imageFolderPath + "\\" + vm.Image.Name;
+                string targetFolder = imageFolderPath + "\\" + vm.Image.FileName;
                 /* Create Registration folder*/
                 Directory.CreateDirectory(targetFolder);
 
@@ -68,14 +67,14 @@ namespace Pixgram_V1.Controllers
                     var imageProperty = new FileUpload
                     {
                         FileTitle = uniqueGuid,
-                        FilePath = imageFolder.Replace("\\", "/") + "/" + vm.Image.Name + "/" + targetFileName
+                        FilePath = imageFolder.Replace("\\", "/") + "/" + vm.Image.FileName + "/" + targetFileName
                     };
                     gallery.Add(imageProperty);
                 }
                 vm.Image.FileUpload = gallery;
                 vm.Image.DateAdded = DateTime.Now;
 
-                vm.Image.ImageUrl = vm.Image.Name.ToString() + targetFileName.ToString();
+                vm.Image.ImageUrl = vm.Image.FileName.ToString() + targetFileName.ToString();
 
                 ctx.Images.Add(vm.Image);
                 await ctx.SaveChangesAsync();
