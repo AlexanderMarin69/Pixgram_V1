@@ -1,0 +1,88 @@
+﻿@model Pixgram_V1.ViewModels.FileUploadsViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="colorlib-main">
+    <section class="ftco-section-2">
+        <div class="photograhy">
+            <center>
+                <h1 class="mt-5">Welcome to Pixgram!</h1>
+                <br />
+                
+            </center>
+            <div class="row no-gutters">
+
+                @if (Model.FileUpload.Count == 0)
+                {
+
+                    <h3>
+                        There are no contributions yet.
+                    </h3>
+                    <br/>
+                    <h3>
+                        Upload your contribution in the
+                        <a asp-action="Upload" asp-controller="Home">upload</a>
+                        section.
+                    </h3>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    }
+                else
+                {
+                    <h3 class="mb-5">These are the latest contributions.</h3>
+                    
+                    @foreach (var v in Model.FileUpload)
+                    {
+
+
+                        string TestImagePathFix = "C:/Users/alexa/source/repos/Pixgram_V1/wwwroot";
+
+                        <img src="@TestImagePathFix@v.FilePath" height="200" width="200" />
+
+
+
+
+                        <div class="col-md-4 ftco-animate">
+                            <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(../wwwroot/@v.FilePath">
+                                <div class="overlay"></div>
+                                <div class="text text-center">
+                                    <h3>Work 01</h3>
+                                    <span class="tag">Model</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container px-md-5">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">Category</h2>
+                        <ul class="list-unstyled categories">
+                            <li><a href="#">Photography <span>(6)</span></a></li>
+                            <li><a href="#">Fashion <span>(8)</span></a></li>
+                            <li><a href="#">Technology <span>(2)</span></a></li>
+                            <li><a href="#">Travel <span>(2)</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
