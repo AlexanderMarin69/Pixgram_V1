@@ -36,17 +36,8 @@
                     
                     @foreach (var v in Model.FileUpload)
                     {
-
-
-                        string TestImagePathFix = "C:/Users/alexa/source/repos/Pixgram_V1/wwwroot";
-
-                        <img src="@TestImagePathFix@v.FilePath" height="200" width="200" />
-
-
-
-
                         <div class="col-md-4 ftco-animate">
-                            <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(../wwwroot/@v.FilePath">
+                            <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(@v.FilePath">
                                 <div class="overlay"></div>
                                 <div class="text text-center">
                                     <h3>Work 01</h3>

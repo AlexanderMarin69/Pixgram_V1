@@ -40,7 +40,7 @@ namespace Pixgram_V1.Controllers
                 string imageFolderPath = rootPath + imageFolder;
                 // to Registration folder
                 var NewImageGuid = new Guid();
-                string targetFolder = imageFolderPath + "\\" + vm.Image.Name + "_" +  NewImageGuid;
+                string targetFolder = imageFolderPath + "\\" + vm.Image.Name;
                 /* Create Registration folder*/
                 Directory.CreateDirectory(targetFolder);
 
