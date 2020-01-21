@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pixgram_V1.Models;
 using Pixgram_V1.ViewModels;
@@ -22,18 +23,28 @@ namespace Pixgram_V1.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var AllImages = await ctx.Images.ToListAsync();
-
+            var AllImages = await ctx.FileUploads.ToListAsync();
 
             var hej = new DisplayImagesViewModel 
-            { Image = AllImages };
+            { FileUpload = AllImages };
 
             return View(hej);
         }
 
         public IActionResult Upload()
         {
-            return View();
+            var vm = new ImageUploadViewModel();
+
+            var listOfCategories = ctx.Categories.ToList();
+
+            vm.Categories = listOfCategories.Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+
+            });
+
+            return View(vm);
         }
 
         public IActionResult Cart()

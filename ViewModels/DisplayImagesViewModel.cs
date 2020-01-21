@@ -8,6 +8,6 @@ namespace Pixgram_V1.ViewModels
 {
     public class DisplayImagesViewModel
     {
-        public List<Image> Image { get; set; }
+        public List<FileUpload> FileUpload { get; set; }
     }
 }

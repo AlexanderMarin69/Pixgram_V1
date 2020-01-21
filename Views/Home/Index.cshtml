@@ -13,7 +13,7 @@
             </center>
             <div class="row no-gutters">
 
-                @if (Model.Image.Count == 0)
+                @if (Model.FileUpload.Count == 0)
                 {
 
                     <h3>
@@ -34,14 +34,14 @@
                 {
                     <h3 class="mb-5">These are the latest contributions.</h3>
                     
-                    @foreach (var v in Model.Image)
+                    @foreach (var v in Model.FileUpload)
                     {
                         <div class="col-md-4 ftco-animate">
-                            <a href="/UserUploadedImages/@v.ImageUrl" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(/UserUploadedImages/@v.ImageUrl">
+                            <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(@v.FilePath">
                                 <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>@v.FileName</h3>
-                                </div>
+                                @*<div class="text text-center">
+                                    <h3></h3>
+                                </div>*@
                             </a>
                         </div>
                     }

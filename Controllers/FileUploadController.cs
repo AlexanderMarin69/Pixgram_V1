@@ -39,7 +39,7 @@ namespace Pixgram_V1.Controllers
                 // to Images folder
                 string imageFolderPath = rootPath + imageFolder;
                 // to Registration folder
-                string targetFolder = imageFolderPath + "\\" + vm.Image.FileName;
+                string targetFolder = imageFolderPath;
                 /* Create Registration folder*/
                 Directory.CreateDirectory(targetFolder);
 
@@ -67,16 +67,20 @@ namespace Pixgram_V1.Controllers
                     var imageProperty = new FileUpload
                     {
                         FileTitle = uniqueGuid,
-                        FilePath = imageFolder.Replace("\\", "/") + "/" + vm.Image.FileName + "/" + targetFileName
+                        FilePath = imageFolder.Replace("\\", "/") /*+ "/" + vm.Image.FileName*/ + "/" + targetFileName
                     };
                     gallery.Add(imageProperty);
                 }
-                vm.Image.FileUpload = gallery;
-                vm.Image.DateAdded = DateTime.Now;
+                var hello = new Image();
+                hello.FileUpload = gallery;
 
-                vm.Image.ImageUrl = vm.Image.FileName.ToString() + "/" + targetFileName.ToString();
+               
+                hello.DateAdded = DateTime.Now;
+                hello.CategoryId = vm.CategoryId;
 
-                ctx.Images.Add(vm.Image);
+                hello.ImageUrl = /*vm.Image.FileName.ToString() + "/" + */targetFileName.ToString();
+
+                ctx.Images.Add(hello);
                 await ctx.SaveChangesAsync();
                 return RedirectToAction("index", "Home");
             } else
