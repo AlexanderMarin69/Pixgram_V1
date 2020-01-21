@@ -74,7 +74,7 @@ namespace Pixgram_V1.Controllers
                 vm.Image.FileUpload = gallery;
                 vm.Image.DateAdded = DateTime.Now;
 
-                vm.Image.ImageUrl = vm.Image.FileName.ToString() + targetFileName.ToString();
+                vm.Image.ImageUrl = vm.Image.FileName.ToString() + "/" + targetFileName.ToString();
 
                 ctx.Images.Add(vm.Image);
                 await ctx.SaveChangesAsync();
