@@ -25,7 +25,16 @@ namespace Pixgram_V1.Controllers
             _appEnvironment = appEnvironment;
         }
 
-     
+        [HttpPost]
+        public IActionResult CreateCategory(ImageUploadViewModel vm)
+        {
+            var NewCategory = new Category();
+            NewCategory.Name = vm.CategoryName;
+
+            ctx.Categories.Add(NewCategory);
+            ctx.SaveChangesAsync();
+            return RedirectToAction("upload", "Home");
+        }
 
         [HttpPost]
         public async Task<IActionResult> FileUpload(ImageUploadViewModel vm, ICollection<IFormFile> images)

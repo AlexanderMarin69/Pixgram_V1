@@ -9,40 +9,38 @@
 
 
 
-<div class="container" style="margin-left:400px; margin-top:200px;">
+<div class="container" style="margin-left:100px; margin-top:100px;">
 
-
-    <form method="post" enctype="multipart/form-data" asp-controller="FileUpload" asp-action="FileUpload">
-        @*<div class="form-group">
-            <div class="col-md-10">
-                <h4>Upload one or more files below!</h4>
-                <input type="file" name="files" multiple />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" value="Upload" />
-            </div>
-        </div>*@
-
-
+    <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
-                <label for="images">Ladda upp bild:</label><br />
-                <input type="file" name="images" id="images" multiple />
-            </div>
+            <form method="post" enctype="multipart/form-data" asp-controller="FileUpload" asp-action="FileUpload">
+                <div class="form-group">
+                    <label for="images">Upload your image or images</label><br />
+                    <input type="file" name="images" id="images" multiple />
+                </div>
+                <select asp-items="Model.Categories" asp-for="CategoryId"></select>
+                <button type="submit" class="btn btn-danger">Upload</button>
+            </form>
         </div>
+        <div class="col-lg-6">
+            <form method="post" asp-controller="FileUpload" asp-action="CreateCategory">
+                <br />
 
-        <select asp-items="Model.Categories" asp-for="CategoryId"></select>
+                <h4>No category that fits your upload? Create your own category below.</h4>
 
-        @*<div class="col-lg-3">
-            <b> <label asp-for="Image.FileCategory">Modell</label></b>
-            <input class="form-control" asp-for="Image.FileCategory" />
-        </div>*@
+                <input type="text" asp-for="CategoryName" placeholder="Your categoryname..." />
 
-        <button type="submit" class="btn btn-danger">Ladda upp</button>
+                <button type="submit" class="btn btn-danger">Create category</button>
 
-    </form>
-
-
+            </form>
+        </div>
+    </div>
 </div>
+
+   
+           
+        
+        
+           
+    
+

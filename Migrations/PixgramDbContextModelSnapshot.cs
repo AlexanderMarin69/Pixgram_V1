@@ -65,8 +65,7 @@ namespace Pixgram_V1.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId")
-                        .IsUnique();
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Images");
                 });
@@ -82,8 +81,8 @@ namespace Pixgram_V1.Migrations
             modelBuilder.Entity("Pixgram_V1.Models.Image", b =>
                 {
                     b.HasOne("Pixgram_V1.Models.Category", "Category")
-                        .WithOne("Image")
-                        .HasForeignKey("Pixgram_V1.Models.Image", "CategoryId")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

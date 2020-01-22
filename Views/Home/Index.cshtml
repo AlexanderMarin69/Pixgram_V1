@@ -3,13 +3,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div id="colorlib-main">
+<div id="colorlib-main" style="margin-bottom: 50px;">
     <section class="ftco-section-2">
         <div class="photograhy">
             <center>
                 <h1 class="mt-5">Welcome to Pixgram!</h1>
                 <br />
-                
+
+
+
             </center>
             <div class="row no-gutters">
 
@@ -19,29 +21,45 @@
                     <h3>
                         There are no contributions yet.
                     </h3>
-                    <br/>
+                    <br />
                     <h3>
                         Upload your contribution in the
                         <a asp-action="Upload" asp-controller="Home">upload</a>
                         section.
                     </h3>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                    }
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                }
                 else
                 {
-                    <h3 class="mb-5">These are the latest contributions.</h3>
-                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form method="post" asp-controller="´Home" asp-action="Index">
+                                    <select asp-items="Model.Categories" asp-for="CategoryId"></select>
+
+                                    <button type="submit" class="btn btn-danger">Välj kategori</button>
+
+                                </form>
+                            </div>
+                            <div class="col-lg-6">
+                                <h3 class="mb-5">These are the latest contributions.</h3>
+                            </div>
+                        </div>
+                    </div>
+
                     @foreach (var v in Model.FileUpload)
                     {
                         <div class="col-md-4 ftco-animate">
                             <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(@v.FilePath">
-                                <div class="overlay"></div>
+                                <div class="overlay">
+                                    <button class="mt-1 btn btn-block btn-primary">Add to basket</button>
+                                </div>
                                 @*<div class="text text-center">
-                                    <h3></h3>
-                                </div>*@
+                                        <h3></h3>
+                                    </div>*@
                             </a>
                         </div>
                     }
@@ -57,22 +75,11 @@
 
 
 
+
             </div>
         </div>
     </section>
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-        <div class="container px-md-5">
-            <div class="row mb-5">
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Category</h2>
-                        <ul class="list-unstyled categories">
-                            <li><a href="#">Photography <span>(6)</span></a></li>
-                            <li><a href="#">Fashion <span>(8)</span></a></li>
-                            <li><a href="#">Technology <span>(2)</span></a></li>
-                            <li><a href="#">Travel <span>(2)</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+</div>
+
+
+
