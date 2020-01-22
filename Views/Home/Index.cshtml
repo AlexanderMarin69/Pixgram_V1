@@ -52,16 +52,21 @@
 
                     @foreach (var v in Model.FileUpload)
                     {
-                        <div class="col-md-4 ftco-animate">
-                            <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(@v.FilePath">
-                                <div class="overlay">
-                                    <button class="mt-1 btn btn-block btn-primary">Add to basket</button>
-                                </div>
-                                @*<div class="text text-center">
-                                        <h3></h3>
-                                    </div>*@
-                            </a>
-                        </div>
+            <div class="col-md-4 ftco-animate">
+                <a href="@v.FilePath" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(@v.FilePath">
+                    <div class="overlay">
+
+                    </div>
+                    @*<div class="text text-center">
+                <h3></h3>
+            </div>*@
+                </a>
+                <form asp-action="AddToCart" asp-controller="Cart" method="post" class="add-to-cart">
+                    <input type="hidden" asp-for="Id" value="@v.Id" />
+                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQueryString()" />
+                    <button type="submit" class="mt-1 btn btn-block btn-primary">Add to basket</button>
+                </form>
+            </div>
                     }
                 }
 

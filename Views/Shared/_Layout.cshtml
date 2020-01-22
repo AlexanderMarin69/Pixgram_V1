@@ -34,7 +34,7 @@
                 <ul>
                     <li><a asp-action="Index" asp-controller="Home">Home</a></li>
                     <li><a asp-action="Upload" asp-controller="Home">Upload</a></li>
-                    <li><a asp-action="Cart" asp-controller="Home">Cart</a></li>
+                    <li>@await Component.InvokeAsync("CartWidget")</li>
                 </ul>
             </nav>
 

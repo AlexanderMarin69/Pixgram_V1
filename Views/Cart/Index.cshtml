@@ -1,0 +1,58 @@
+﻿@model CartViewModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h2 style="margin-left:150px;">Kundvagn</h2>
+<table style="margin-left:150px;" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Antal</th>
+            <th>Produkt</th>
+            <th class="text-right">Stuckpris</th>
+            <th class="text-right">Radtotal</th>
+            <th class="text-right"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var r in Model.Cart.CartRows)
+        {
+            <tr>
+                <td class="text-center">@r.Quantity</td>
+                <td class="text-center">@r.FileUpload.FileTitle</td>
+                <td class="text-center">Price</td>
+                <td class="text-center">Q * P</td>
+
+                <td>
+                    <form asp-action="RemoveFromCart"
+                          asp-controller="Cart"
+                          method="post">
+                        <input type="hidden" name="Id" value="@r.FileUpload.Id" />
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <button class="btn btn-success pull-right" type="submit">Ladda ner</button>
+                        <button class="btn btn-danger pull-right" type="submit">Ta bort</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"><strong>Total summa:</strong></td>
+            <td colspan="2" class="text-right">
+                <strong>
+                    @*@Model.Cart.GetCartTotal().ToString("c")*@
+                    Cart Total
+                </strong>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div style="margin-left:150px;" class="pull-right">
+    <a class="btn btn-primary" style="color: black;" href="@Model.ReturnUrl">Fortsätt handla</a>
+    <a class="btn btn-success" asp-action="Checkout" asp-controller="Order">Ladda ner alla</a>
+</div>
+
+
