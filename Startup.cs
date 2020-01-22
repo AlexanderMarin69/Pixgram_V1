@@ -30,10 +30,15 @@ namespace Pixgram_V1
 
             services.AddDbContext<PixgramDbContext>(options => options.UseSqlServer(conn));
 
+            services.AddScoped(f => CartSession.GetCart(f));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-
-
-
+            services.AddMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".ToolShed.Cart.Session";
+                options.IdleTimeout = TimeSpan.FromDays(2);
+            });
 
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -63,6 +68,7 @@ namespace Pixgram_V1
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
