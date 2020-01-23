@@ -9,9 +9,7 @@
         <tr>
             <th>Antal</th>
             <th>Produkt</th>
-            <th class="text-right">Stuckpris</th>
-            <th class="text-right">Radtotal</th>
-            <th class="text-right"></th>
+            <th>Alternativ</th>
         </tr>
     </thead>
 
@@ -21,38 +19,38 @@
             <tr>
                 <td class="text-center">@r.Quantity</td>
                 <td class="text-center">@r.FileUpload.FileTitle</td>
-                <td class="text-center">Price</td>
-                <td class="text-center">Q * P</td>
 
                 <td>
-                    <form asp-action="RemoveFromCart"
-                          asp-controller="Cart"
-                          method="post">
-                        <input type="hidden" name="Id" value="@r.FileUpload.Id" />
-                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
-                        <button class="btn btn-success pull-right" type="submit">Ladda ner</button>
-                        <button class="btn btn-danger pull-right" type="submit">Ta bort</button>
-                    </form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form asp-action="DownloadImage"
+                                      asp-controller="Cart"
+                                      method="post">
+                                    <input type="hidden" name="Id" value="@r.FileUpload.Id" />
+                                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                    <button class="btn btn-success pull-right" type="submit">Ladda ner</button>
+                                </form>
+                            </div>
+                            <div class="col-lg-6">
+                                <form asp-action="RemoveFromCart"
+                                      asp-controller="Cart"
+                                      method="post">
+                                    <input type="hidden" name="Id" value="@r.FileUpload.Id" />
+                                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                    <button class="btn btn-danger pull-right" type="submit">Ta bort</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
-
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right"><strong>Total summa:</strong></td>
-            <td colspan="2" class="text-right">
-                <strong>
-                    @*@Model.Cart.GetCartTotal().ToString("c")*@
-                    Cart Total
-                </strong>
-            </td>
-        </tr>
-    </tfoot>
 </table>
 <div style="margin-left:150px;" class="pull-right">
     <a class="btn btn-primary" style="color: black;" href="@Model.ReturnUrl">Fortsätt handla</a>
-    <a class="btn btn-success" asp-action="Checkout" asp-controller="Order">Ladda ner alla</a>
+    <a class="btn btn-success" asp-action="DownloadAllZip" asp-controller="Cart">Ladda ner alla</a>
 </div>
 
 

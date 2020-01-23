@@ -1,6 +1,5 @@
 ﻿@model Cart
-@if (Model.CartRows.Any())
-{
+
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -14,13 +13,11 @@
                     <li>
                         <div class="item">
                             <span class="item-left">
-                                <img src="http://via.placeholder.com/50x50" @*alt="@row.Product.Name"*@>
+                                <img src="http://via.placeholder.com/50x50" alt="@row.FileUpload.FileTitle">
                                 <span class="item-info">
                                     <span>
-                                        @row.Quantity *
                                         @row.FileUpload.FileTitle
                                     </span>
-                                    @*<span>a' @($"{row.Product.Price:C2}")</span>*@
                                 </span>
                             </span>
                             <div class="item-right">
@@ -29,21 +26,14 @@
                                       method="post">
                                     <input type="hidden" name="Id" value="@row.FileUpload.Id" />
                                     <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQueryString()" />
-                                    <button type="submit" class="btn btn-xs btn-danger pull-right"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <button type="submit" class="btn btn-xs btn-danger pull-right">Ta bort</button>
                                 </form>
-
                             </div>
                         </div>
                     </li>
                 }
                 <li class="divider"></li>
-                <li>
-                    <span class="total pull-right">
-                        Total: @*@($"{Model.GetCartTotal():C2}")*@
-                    </span>
-                </li>
-                <li><a class="text-center" asp-controller="Cart" asp-action="Index">Till Varukorgen</a></li>
+                <li><a asp-controller="Cart" asp-action="Index">Till Varukorgen</a></li>
             </ul>
         </li>
     </ul>
-}
