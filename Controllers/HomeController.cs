@@ -15,22 +15,20 @@ namespace Pixgram_V1.Controllers
     public class HomeController : Controller
     {
         private readonly PixgramDbContext ctx;
-   
+
         public HomeController(PixgramDbContext context)
         {
             ctx = context;
-           
-        }
-        //[Route("{CategoryName}")]
-        public async Task<IActionResult> Index(DisplayImagesViewModel vm, string CategoryName)
-        {
-            var hello = CategoryName;
 
+        }
+        
+        public async Task<IActionResult> Index(DisplayImagesViewModel vm)
+        {
             var listOfCategories = ctx.Categories.ToList();
 
+            var CatIdAll = ctx.Categories.Where(x => x.Id == vm.CategoryId).FirstOrDefault();
 
-
-            if (CategoryName == null && vm.CategoryId == 0)
+            if (vm.CategoryId == 0 || CatIdAll.Name == "All")
             {
                 var AllImages = await ctx.FileUploads.ToListAsync();
 
@@ -45,20 +43,9 @@ namespace Pixgram_V1.Controllers
                 });
 
                 return View(hej);
-            } else if (CategoryName == null && vm.CategoryId != 0) {
-                //var AllImages = await ctx.FileUploads.ToListAsync();
+            }
+            else  { 
 
-                //var hej = new DisplayImagesViewModel
-                //{ FileUpload = AllImages };
-
-                //hej.Categories = listOfCategories.Select(x => new SelectListItem
-                //{
-                //    Text = x.Name,
-                //    Value = x.Id.ToString()
-
-                //});
-
-                //return View(hej);
                 var AllImages = await ctx.FileUploads.Include(x => x.Image).ToListAsync();
                 var helloo = new List<FileUpload>();
                 helloo = AllImages.Where(x => x.Image.CategoryId == vm.CategoryId).ToList();
@@ -76,26 +63,6 @@ namespace Pixgram_V1.Controllers
 
                 return View(hej);
             }
-            else
-            {
-                //var AllImages = await ctx.FileUploads.Include(x => x.Image).ToListAsync();
-                //var helloo = new List<FileUpload>();
-                //helloo = AllImages.Where(x => x.Image.CategoryId == vm.CategoryId).ToList();
-
-
-                //var hej = new DisplayImagesViewModel
-                //{ FileUpload = helloo };
-
-                //hej.Categories = listOfCategories.Select(x => new SelectListItem
-                //{
-                //    Text = x.Name,
-                //    Value = x.Id.ToString()
-
-                //});
-
-                return View();
-            }
-
         }
 
         public async Task<IActionResult> Upload()
