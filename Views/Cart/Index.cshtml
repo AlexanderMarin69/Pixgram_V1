@@ -4,6 +4,12 @@
 }
 
 <h2 style="margin-left:150px;">Kundvagn</h2>
+<div style="margin-left:150px;">
+    <form asp-action="DownloadAllImagesZip" asp-controller="Cart" method="post">
+        <button class="btn btn-block btn-primary">DOWNLOAD ALL IMAGES</button>
+    </form>
+</div>
+
 <table style="margin-left:150px;" class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -28,11 +34,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form asp-action="DownloadImage"
+                                <form asp-action="DownloadSingleImage"
                                       asp-controller="Cart"
                                       method="post">
-                                    <input type="hidden" name="Id" value="@r.FileUpload.Id" />
-                                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                    <input type="hidden" name="UploadIdForDownload" value="@r.FileUpload.Id" />
                                     <button class="btn btn-success pull-right" type="submit">Ladda ner</button>
                                 </form>
                             </div>
@@ -54,7 +59,6 @@
 </table>
 <div style="margin-left:150px;" class="pull-right">
     <a class="btn btn-primary" style="color: black;" href="@Model.ReturnUrl">Fortsätt handla</a>
-    <a class="btn btn-success" asp-action="DownloadAllZip" asp-controller="Cart">Ladda ner alla</a>
 </div>
 
 
