@@ -60,6 +60,17 @@ namespace Pixgram_V1.Controllers
                 string targetFileName = "";
                 foreach (var image in images)
                 {
+                    if (Path.GetExtension(image.FileName) != ".jpg" 
+                        || 
+                        Path.GetExtension(image.FileName) != ".jpeg"
+                        || 
+                        Path.GetExtension(image.FileName) != ".png")
+                    {
+                        TempData["FileNotAccepted"] = "File not accepted." +
+                            " File must be of type jpg, jpeg or png";
+                        return RedirectToAction("Upload", "Home");
+                    }
+                    
                     Guid uniqueGuid = Guid.NewGuid();
                     targetFileName = uniqueGuid + image.FileName;
                     string finalTargetFilePath = targetFolder + "\\" + targetFileName;
