@@ -85,10 +85,5 @@ namespace Pixgram_V1.Controllers
             }
             return File(bytes, "application/zip", "images.zip");
         }
-
-        public IActionResult DownloadSingleImageZip()
-        {
-            return View();
-        }
     }
 }

@@ -7,22 +7,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Pixgram_V1.Models;
 using Pixgram_V1.ViewModels;
 using vueproject.DB;
 
 namespace Pixgram_V1.Controllers
 {
-    
     public class FileUploadController : Controller
     {
 
         private readonly PixgramDbContext ctx;
         private IHostingEnvironment _appEnvironment;
-        public FileUploadController(PixgramDbContext context, IHostingEnvironment appEnvironment)
+        private IMemoryCache _cache;
+        public FileUploadController(PixgramDbContext context, IHostingEnvironment appEnvironment, IMemoryCache memoryCache)
         {
             ctx = context;
             _appEnvironment = appEnvironment;
+            _cache = memoryCache;
         }
 
         [HttpPost]
@@ -88,6 +90,9 @@ namespace Pixgram_V1.Controllers
                 hello.CategoryId = vm.CategoryId;
 
                 hello.ImageUrl = /*vm.Image.FileName.ToString() + "/" + */targetFileName.ToString();
+
+                //Removes all cahce on upload to be able to have a cache that is up to date :))
+                 _cache.Remove(CacheKeys.AllImages);
 
                 ctx.Images.Add(hello);
                 await ctx.SaveChangesAsync();
