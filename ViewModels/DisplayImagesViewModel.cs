@@ -13,6 +13,7 @@ namespace Pixgram_V1.ViewModels
         public int Id { get; set; }
         [DisplayName("Namn")]
         public List<FileUpload> FileUpload { get; set; }
+        public string CategoryName { get; set; }
         public int CategoryId { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
     }

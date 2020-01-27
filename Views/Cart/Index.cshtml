@@ -1,15 +1,15 @@
 ﻿@model CartViewModel
 @{
-    ViewData["Title"] = "Cart";
+    ViewData["Title"] = "Favourites";
 }
 
-<h2 style="margin-left:150px;">Kundvagn</h2>
+    <h1 style="margin-left:150px; margin-top: 40px;">Favourites</h1>
 <div style="margin-left:150px;">
     <form asp-action="DownloadAllImagesZip" asp-controller="Cart" method="post">
         <button class="btn btn-block btn-primary">DOWNLOAD ALL IMAGES</button>
     </form>
 </div>
-
+<br />
 <table style="margin-left:150px;" class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -38,7 +38,7 @@
                                       asp-controller="Cart"
                                       method="post">
                                     <input type="hidden" name="UploadIdForDownload" value="@r.FileUpload.Id" />
-                                    <button class="btn btn-success pull-right" type="submit">Ladda ner</button>
+                                    <button class="btn btn-primary pull-right" type="submit">Download</button>
                                 </form>
                             </div>
                             <div class="col-lg-6">
@@ -47,7 +47,7 @@
                                       method="post">
                                     <input type="hidden" name="Id" value="@r.FileUpload.Id" />
                                     <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
-                                    <button class="btn btn-danger pull-right" type="submit">Ta bort</button>
+                                    <button class="btn btn-secondary pull-right" type="submit">Remove</button>
                                 </form>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
     </tbody>
 </table>
 <div style="margin-left:150px;" class="pull-right">
-    <a class="btn btn-primary" style="color: black;" href="@Model.ReturnUrl">Fortsätt handla</a>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Back to Gallery</a>
 </div>
 
 

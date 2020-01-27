@@ -24,7 +24,7 @@
                     <br />
                     <h3>
                         Upload your contribution in the
-                        <a asp-action="Upload" asp-controller="Home">upload</a>
+                        <a asp-action="Upload" asp-controller="Home">Upload</a>
                         section.
                     </h3>
                     <br />
@@ -37,12 +37,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form method="post" asp-controller="´Home" asp-action="Index">
+                                <form method="post" asp-controller="Home" asp-route-CategoryName="@Model.CategoryName" asp-action="Index">
                                     <select asp-items="Model.Categories" asp-for="CategoryId"></select>
-
-                                    <button type="submit" class="btn btn-danger">Välj kategori</button>
-
-                                </form>
+                                    <button type="submit" class="btn btn-danger">Choose Category</button>
+                                </form> 
                             </div>
                             <div class="col-lg-6">
                                 <h3 class="mb-5">These are the latest contributions.</h3>
@@ -64,7 +62,7 @@
                 <form asp-action="AddToCart" asp-controller="Cart" method="post" class="add-to-cart">
                     <input type="hidden" asp-for="Id" value="@v.Id" />
                     <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQueryString()" />
-                    <button type="submit" class="mt-1 btn btn-block btn-primary">Add to basket</button>
+                    <button type="submit" class="mt-1 btn btn-block btn-primary">Add to Favourites</button>
                 </form>
             </div>
                     }
