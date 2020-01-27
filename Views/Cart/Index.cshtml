@@ -59,6 +59,12 @@
 </table>
 <div style="margin-left:150px;" class="pull-right">
     <a class="btn btn-primary" href="@Model.ReturnUrl">Back to Gallery</a>
+
+    <form asp-action="EmptyCart" asp-controller="Cart" method="post">
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+        <button class="btn btn-secondary pull-right" style="margin-top: 20px;" type="submit">Remove All Favourites</button>
+    </form>
+
 </div>
 
 

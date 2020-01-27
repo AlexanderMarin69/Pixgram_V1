@@ -56,6 +56,12 @@ namespace Pixgram_V1.Controllers
             return RedirectToAction(nameof(Index), new { returnUrl });
         }
 
+        public IActionResult EmptyCart(string returnUrl)
+        {
+            cart.EmptyCart();
+            return RedirectToAction(nameof(Index), new { returnUrl });
+        }
+
         public IActionResult DownloadSingleImage(int UploadIdForDownload)
         {
             var FileUplaodToDownlaod = ctx.FileUploads.Where(x => x.Id == UploadIdForDownload).FirstOrDefault();
